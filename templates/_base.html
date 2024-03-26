@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}
+
+    {% endblock %}</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary"> <!-- Set the background color to primary (blue) -->
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Article Site</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'post_list_name' %}">Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'show_form_add_name' %}">Add New Post</a>
+                </li>
+                <!-- Add more tabs as needed -->
+            </ul>
+        </div>
+        <span class="navbar-text">
+            {% if user.is_authenticated %}
+                Hi {{ user.username }}!
+                <form action="{% url 'logout' %}" method="post">
+
+                    {% csrf_token %}
+                    <button type="submit" class="btn-danger">Log Out</button>
+
+                </form>
+            {% else %}
+                <p>You are not logged in</p>
+                <a href="{% url 'login' %}">Log In</a>
+                |
+                <a href="{% url 'signup' %}">SignUp</a>
+            {% endif %}
+        </span>
+    </div>
+</nav>
+
+{% block content %}
+
+{% endblock %}
+
+<!-- Articles Display Section -->
+
+<!-- Include Bootstrap JS (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

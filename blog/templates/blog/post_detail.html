@@ -1,0 +1,62 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+
+    Post Detail
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="mb-4">{{ post.title }}</h1>
+                <p class="text-muted">Published on {{ post.datetime_created }} by {{ post.author }}</p>
+                <img src="https://wallpapercave.com/wp/wp12510374.jpg" alt="Blog Post Image" class="img-fluid mb-4">
+                <p>{{ post.text }}</p>
+
+                <a href="{% url 'post_update_view_name' post.pk %}" class="btn btn-primary btn-md active"
+                   role="button" aria-pressed="true">Edit
+                </a>
+                <a href="{% url 'post_delete_view_name' post.pk %}" class="btn btn-danger btn-md active"
+                   role="button" aria-pressed="true">Delete
+                </a>
+
+                <hr>
+
+
+                <h3>Comments</h3>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea id="comment" name="comment" rows="4" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                </form>
+                <div class="comments-list mt-4">
+                    <!-- Sample comment(s) go here -->
+                    <div class="comment">
+                        <p><strong>John:</strong> Great post! Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <!-- More comments go here -->
+                </div>
+                <div class="mt-4">
+                    <a href="{% url 'post_list_name' %}" class="btn btn-secondary">Back to Blog</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

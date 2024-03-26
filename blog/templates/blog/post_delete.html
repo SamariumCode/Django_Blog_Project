@@ -1,0 +1,36 @@
+{% extends '_base.html' %}
+
+
+{% block page_title %}
+
+    Post Delete
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+    <form method="POST" class="delete-form">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">Are you sure you want to delete this item?</p>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                <a href="{% url 'post_list_name' %}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+{% endblock %}
